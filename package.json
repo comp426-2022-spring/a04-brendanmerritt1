@@ -1,0 +1,31 @@
+{
+  "name": "a04-brendanmerritt1",
+  "version": "1.0.0",
+  "description": "Recording access logs and testing for errors from a03.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-spring/a04-brendanmerritt1.git"
+  },
+  "author": "brendanmerritt1",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-spring/a04-brendanmerritt1/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/comp426-2022-spring/a04-brendanmerritt1#readme",
+  "dependencies": {
+    "better-sqlite3": "^7.5.0",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "yargs": "^17.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
