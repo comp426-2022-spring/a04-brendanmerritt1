@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}))
 const port = (argv.port == undefined) ? 5555 : argv.port;
 
 //create rest of command line options
-const debug = (argv.debug == undefined) ? false : true;
+const debug = (argv.debug == undefined || argv.debug == 'false') ? false : true;
 const log = (argv.log == undefined || argv.log == 'true') ? true : false;
 const help = (argv.help == undefined) ? false : true;
 
@@ -63,12 +63,14 @@ app.use((req, res, next) => {
         url: req.url,
         protocol: req.protocol,
         httpversion: req.httpVersion,
+        secure: req.secure,
         status: res.statusCode,
         referer: req.headers['referer'],
         useragent: req.headers['user-agent']
     };
-    const stmt = logdb.prepare(`INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    stmt.run(Object.keys(logdata));
+    const stmt = logdb.prepare(`INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, secure, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    //stmt.run(Object.values(logdata));
+    stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, String(logdata.secure), logdata.status, logdata.referer, logdata.useragent)
     next();
 });
 

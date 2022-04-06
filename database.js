@@ -17,16 +17,18 @@ function dbInit() {
         //constant containing commands to initialize database
         const sqlInit = `
             CREATE TABLE accesslog (
-                remoteaddr VARCHAR,
-                remoteuser VARCHAR,
-                time VARCHAR,
-                method VARCHAR,
-                url VARCHAR,
-                protocol VARCHAR,
-                httpversion NUMERIC,
-                status NUMERIC,
-                referer VARCHAR,
-                useragent VARCHAR
+                id INTEGER PRIMARY KEY,
+                remoteaddr TEXT,
+                remoteuser TEXT,
+                time NUMBER,
+                method TEXT,
+                url TEXT,
+                protocol TEXT,
+                httpversion NUMBER,
+                secure TEXT,
+                status NUMBER,
+                referer TEXT,
+                useragent TEXT
             );
         `
         logdb.exec(sqlInit);
