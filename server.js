@@ -20,7 +20,7 @@ const port = (argv.port == undefined) ? 5555 : argv.port;
 
 //create rest of command line options
 const debug = (argv.debug == undefined) ? false : true;
-const log = (argv.log == undefined) ? true : false;
+const log = (argv.log == undefined || argv.log == 'true') ? true : false;
 const help = (argv.help == undefined) ? false : true;
 
 //display help message from html file if --help
@@ -56,19 +56,18 @@ appServer();
 app.use((req, res, next) => {
     //create log data object that contains necessary variables
     let logdata = {
-        remote_addr: req.ip,
-        remote_user: req.user,
-        date: Date.now(),
+        remoteaddr: req.ip,
+        remoteuser: req.user,
+        time: Date.now(),
         method: req.method,
         url: req.url,
         protocol: req.protocol,
-        http_version: req.httpVersion,
-        secure: req.secure,
+        httpversion: req.httpVersion,
         status: res.statusCode,
-        referrer_url: req.headers['referrer'],
-        user_agent: req.headers['user-agent']
+        referer: req.headers['referer'],
+        useragent: req.headers['user-agent']
     };
-    const stmt = logdb.prepare(`INSERT INTO accesslog (remote_addr, remote_user, date, method, url, protocol, http_version, secure, status, referrer_url, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    const stmt = logdb.prepare(`INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     stmt.run(Object.keys(logdata));
     next();
 });
