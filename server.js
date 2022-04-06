@@ -15,7 +15,7 @@ const argv = Yargs(process.argv.slice(2)).help(false).argv;
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-//define port as default or from cli
+//define port as default or from command line
 const port = (argv.port == undefined) ? 5555 : argv.port;
 
 //create rest of command line options
