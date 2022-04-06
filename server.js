@@ -52,7 +52,7 @@ async function appServer() {
 //start up the server
 appServer();
 
-//middleware function that inserts new record in database
+//middleware function that inserts a new record in database
 app.use((req, res, next) => {
     //create log data object that contains necessary variables
     let logdata = {
