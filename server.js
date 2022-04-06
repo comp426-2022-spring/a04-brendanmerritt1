@@ -20,7 +20,7 @@ const port = (argv.port == undefined) ? 5555 : argv.port;
 
 //create rest of command line options
 const debug = (argv.debug == undefined || argv.debug == 'false') ? false : true;
-const log = (argv.log == undefined || argv.log == 'true') ? true : false;
+const log = (argv.log == 'true') ? true : false;
 const help = (argv.help == undefined) ? false : true;
 
 //display help message from html file if --help
