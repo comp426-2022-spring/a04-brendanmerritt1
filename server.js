@@ -4,7 +4,7 @@ import Yargs from 'yargs';
 import fs from 'fs';
 import morgan from 'morgan';
 import {logdb, dbInit} from './database.js';
-import * as coin from '../a03-brendanmerritt1/coin.mjs'
+import * as coin from './coin.mjs'
 
 //initialize constants for dependencies
 const app = express();
