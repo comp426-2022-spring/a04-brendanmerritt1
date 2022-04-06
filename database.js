@@ -25,7 +25,6 @@ function dbInit() {
                 url TEXT,
                 protocol TEXT,
                 httpversion NUMBER,
-                secure TEXT,
                 status NUMBER,
                 referer TEXT,
                 useragent TEXT
